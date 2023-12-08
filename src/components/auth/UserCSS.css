@@ -1,0 +1,15 @@
+.card{
+    width: 22%;
+    margin: 10px;
+    background-color: #cdcdcd;
+    border-radius: 8px;
+    border: 2px solid black;
+
+}
+
+.card img {
+    width: 50%;
+    height: 25%;
+    /* align-items: center; */
+    margin-left: 50px;
+}
