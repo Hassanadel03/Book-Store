@@ -1,22 +1,21 @@
 import './UserCSS.css'
 
-function User(props){
-    return(
-    <div className = "card">
-        <img src={props.user.photo} />
-        <h1>{props.user.username}</h1>
-        <h3>Address</h3>
-        <h4>{props.user.phone}</h4>
-        <h4>{props.user.email}</h4>
-        <ul>
-            <li>Street: {props.user.address.street}</li>
-            <li>Number: {props.user.address.number}</li>
-            <li>City: {props.user.address.city}</li>
-            <li>Zipcode: {props.user.address.zipcode}</li>
-            <li>Latitude: {props.user.address.geolocation.lat}</li>
-            <li>Longtuide: {props.user.address.geolocation.long}</li>
-        </ul>
-    </div>
-    );}
+function Book({ book }) {
+    // Check if 'book' is defined before accessing its properties
+    if (!book) {
+        return null; // or handle the case when 'book' is not defined
+    }
 
-export default User;
+    const { bookName, pdfName, info } = book;
+
+    return (
+        <div className="card">
+            <h3>{bookName}</h3>
+            <p>PDF: {pdfName}</p>
+            <p>Info: {info}</p>
+
+        </div>
+    );
+}
+
+export default Book;

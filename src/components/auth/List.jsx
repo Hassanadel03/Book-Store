@@ -1,21 +1,34 @@
-import React from "react";
-import users from "./Books.js"
-import User from "./Book.jsx"
-import "./ListCSS.css"
+import React, { useState, useEffect } from "react";
+import Book from "./Book.jsx";
+import "./ListCSS.css";
+import axios from "axios";
 
+function List(props) {
+    const [books, setBooks] = useState([]);
 
-function List(props){
-    
-    const user = users.map((user) => {
-        return(
-            <User key={user.id} user = {user} />  
-        )})
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/books');
+                console.log(response)
+                setBooks(response.data);
 
-    return(
+            } catch (error) {
+                console.error('Error fetching books:', error);
+                console.log('Full error details:', error);
+            }
+        };
+
+        fetchBooks();
+    }, []);
+
+    const userList = books.map((book) => (
+        <Book key={book._id} book={book} />
+    ));
+
+    return (
         <div className="UsersList">
-            <div className="row">
-                {user}
-            </div>
+            <div className="row">{userList}</div>
         </div>
     );
 }
